@@ -6,6 +6,8 @@ project (BAKGE)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
+include(${CMAKE_SOURCE_DIR}/cmake/GetGLFW.cmake)
+
 include_directories(${BAKGE_SOURCE_DIR}/include)
 include_directories(/usr/X11/include)
 link_directories(/usr/X11/lib)
