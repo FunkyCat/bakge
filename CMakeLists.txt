@@ -29,6 +29,12 @@ include_directories(${OPENGL_INCLUDE_DIR})
 # Set output directory of the static library
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
+# Build library dependencies
+add_subdirectory(lib)
+
+# Build libbakge
 add_subdirectory(src)
+
+# Build tests
 add_subdirectory(test)
 

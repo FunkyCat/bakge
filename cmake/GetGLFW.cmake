@@ -14,3 +14,4 @@ if(NOT EXISTS ${GLFW_TARGET} AND EXISTS ${GLFW_ARCHIVE})
   message("-- Removing archive ${GLFW_ARCHIVE}")
   file(REMOVE ${GLFW_ARCHIVE})
 endif()
+
