@@ -22,53 +22,43 @@
  * THE SOFTWARE.
  * */
 
-#ifndef BAKGE_WINDOW_WIN32_WINDOW_H
-#define BAKGE_WINDOW_WIN32_WINDOW_H
+#ifndef BAKGE_CORE_WINDOW_H
+#define BAKGE_CORE_WINDOW_H
 
 #include <bakge/Bakge.h>
 
 namespace bakge
 {
 
-typedef class win32_Window : api::Window
+#define GLFWCALLBACK static
+
+class Window : public Bindable
 {
-    friend Result Init(int argc, char* argv[]);
-    friend Result Deinit();
+    GLFWCALLBACK void WindowMoved(GLFWwindow* Handle,  int X, int Y);
+    GLFWCALLBACK void WindowResized(GLFWwindow* Handle, int Width, int Height);
+    GLFWCALLBACK void WindowClosed(GLFWwindow* Handle);
 
-    static HINSTANCE Instance;
-    static WNDCLASSEX WindowClass;
-    static HDC Device; /* Device context */
-    static HGLRC Context; /* OpenGL context */
-    static PIXELFORMATDESCRIPTOR PixFormat;
-    static int Format;
+    GLFWwindow* WindowHandle;
+
+    Window();
     
-    static LRESULT CALLBACK WindowProcCallback(HWND, UINT, WPARAM, LPARAM);
-
-    win32_Window();
-
 
 public:
 
-    ~win32_Window();
-    
-    BGE_FACTORY win32_Window* Create(int Width, int Height);
+    ~Window();
+
+    BGE_FACTORY Window* Create(int Width, int Height);
 
     bool IsOpen();
-
     Result Close();
-    
     Result PollEvent(Event* Ev);
-
     Result SwapBuffers();
 
+    Result Bind() const;
+    Result Unbind() const;
 
-protected:
-
-    HWND Window;
-    HGLRC LocalContext;
-
-} Window; /* win32_Window */
+}; /* Window */
 
 } /* bakge */
 
-#endif /* BAKGE_WINDOW_WIN32_WINDOW_H */
+#endif /* BAKGE_CORE_WINDOW_H */
